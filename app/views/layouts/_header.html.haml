@@ -1,0 +1,17 @@
+.d-flex
+  %nav.navbar.navbar-expand-lg.navbar-light
+    .container
+      = link_to "CleaningSchedule", root_path, class: 'text-decoration-none'
+      %button.navbar-toggler(data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation")
+        %span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNavDropdown
+        %ul.navbar-nav.ml-auto
+        - if customer_signed_in?
+          %li.nav-item
+            
+        - elsif admin_signed}_in?
+          %li.nav-item
+            
+        - else
+          %li.nav-item
+          
