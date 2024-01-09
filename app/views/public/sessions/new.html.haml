@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Log in
+      = form_with(model: @customer, url: customer_session_path) do |f|
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .form-group
+          = f.label :password
+          = f.password_field :password, autocomplete: "current-password"
+        - if devise_mapping.rememberable?
+          .form-group
+          
