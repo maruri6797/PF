@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_07_044119) do
+ActiveRecord::Schema.define(version: 2024_01_07_072600) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -41,6 +41,23 @@ ActiveRecord::Schema.define(version: 2024_01_07_044119) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "events", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.boolean "is_correspondence", default: false
+    t.string "note"
+    t.integer "trash", default: 0, null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_events_on_customer_id"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.integer "user_id", null: false
@@ -49,6 +66,17 @@ ActiveRecord::Schema.define(version: 2024_01_07_044119) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.integer "price", null: false
+    t.string "remarks"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_places_on_customer_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -63,6 +91,8 @@ ActiveRecord::Schema.define(version: 2024_01_07_044119) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "events", "customers"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "places", "customers"
 end

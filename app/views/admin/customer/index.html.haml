@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Customers
+      - @customers.each do |customer|
+        = customer.company
+        = link_to "Schedule", admin_customer_path(customer)
+        

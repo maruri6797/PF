@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Sign up
+      = form_with(model: @customer, url: customer_registration_path) do |f|
+        = render "public/shared/error_messages", resource: resource
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .form-group
+          = f.label :password
+          - if @minimum_password_length
+            %em
+            (
+            = @minimum_password_length
+            characters minimum)
+          = f.password_field :password, autocomplete: "new-password"
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+        .actions
+          = f.submit "Sign up"
+      = render "public/shared/links"

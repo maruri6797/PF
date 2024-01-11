@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Managers
+      = form_with(model: @manager, url: admin_managers_path, method: :post) do |f|
+        .form-group
+          = f.label :name
+          = f.text_field :name
+          = f.submit "Add", class: 'btn btn-primary'
+      - if @managers.present?
+        - @managers.each do |manager|
+          .col-3
+            = manager.name
+            = link_to "delete", admin_manager_path(manager), method: :delete, class: 'text-danger'
