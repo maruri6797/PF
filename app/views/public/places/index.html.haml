@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Places
+      = form_with(model: @place, url: places_path, method: :post) do |f|
+        .form-group
+          = f.label :name
+          = f.text_field :name
+        .form-group
+          = f.label :address
+          = f.text_field :address
+        .form-group
+          = f.label :remarks
+          = f.text_field :remarks
+        .actions
+          = f.submit "Add", class: 'text-success'
+      %table.table
+        %thead
+          %tr
+            %th
+            %th
+            %th place
+            %th address
+            %th remarks
+        %tbody
+        - @places.each do |place|
+          %tr
+            %td= link_to "", edit_place_path(place), class: 'fa-solid fa-pen-to-square'
+            %td= link_to "", place_path(place), method: :delete, class: 'fa-solid fa-trash'
+            %td= place.name
+            %td= place.address
+            %td= place.remarks

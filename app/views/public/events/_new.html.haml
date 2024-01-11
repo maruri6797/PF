@@ -1,0 +1,34 @@
+%button.btn.btn-primary.button.expansion(type="button" data-toggle="modal" data-target="#exampleModal")
+  %i.fa-solid.fa-plus
+
+.modal.fade#exampleModal(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        %h5.modal-title#exampleModalLabel New Event
+        %button.close(type="button" data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+      = form_with(model: event, url: events_path) do |f|
+        .modal-body
+          .form-group
+            = f.label :place
+            - places.each do |place|
+              = f.collection_radio_button(:place, current_customer.places, :first, :first) do |b|
+                = b.radio_button + "\s" + b.name
+          .form-group
+            = f.datetime_select :start_time
+          .form-group
+            = f.label :is_correspondence, "correspondence"
+            = f.radio_button :is_correspondence, false
+            = f.label :is_correspondence_false, "absence"
+            = f.radio_button :is_correspondence, true
+            = f.label :is_correspondence_true, "presence"
+          .form-group
+            = f.label :note
+            = f.text_field :note
+          .form-group
+            = f.hidden_field :status
+            = f.hidden_field :trash
+        .modal-footer
+          %button.btn.btn-secondary(type="button" data-dismiss="modal") close
+          = f.submit "Add", class: 'btn btn-success'

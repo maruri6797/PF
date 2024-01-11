@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :note
       t.integer :trash, null: false, default: 0
       t.integer :status, default: 0
+      t.datetime :start_time
 
       t.timestamps
     end

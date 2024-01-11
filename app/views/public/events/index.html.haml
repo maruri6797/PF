@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-lg-10.col-md-10
+      %h3 Schedule
+      = month_calendar(events: @events) do |date, events|
+        = date
+        = render 'public/events/new', event: @event
+        - events.each do |event|
+          = link_to event.place.name, event_path(event)

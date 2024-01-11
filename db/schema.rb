@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_07_072600) do
+ActiveRecord::Schema.define(version: 2024_01_11_070820) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -41,12 +41,22 @@ ActiveRecord::Schema.define(version: 2024_01_07_072600) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "event_places", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "place_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_event_places_on_event_id"
+    t.index ["place_id"], name: "index_event_places_on_place_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.boolean "is_correspondence", default: false
     t.string "note"
     t.integer "trash", default: 0, null: false
     t.integer "status", default: 0
+    t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_events_on_customer_id"
@@ -91,6 +101,8 @@ ActiveRecord::Schema.define(version: 2024_01_07_072600) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "event_places", "events"
+  add_foreign_key "event_places", "places"
   add_foreign_key "events", "customers"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"

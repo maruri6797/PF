@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Detail
+      = link_to "Delete", event_path(@event), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"}
+      %p place
+      = @event.place.name
+      = form_with(model: @event, url: event_path(@event), method: :patch) do |f|
+        .form-group
+          = f.datetime_select :start_time
+        .form-group
+          = f.label :is_correspondence, "correspondence"
+          = f.radio_button :is_correspondence, false
+          = f.label :is_correspondence_false, "absence"
+          = f.radio_button :is_correspondence, true
+          = f.label :is_correspondence_true, "presence"
+        .form-group
+          = f.label :note
+          = f.text_field :note
+        .actions
+          = f.submit "Update", class: 'btn btn-danger'
