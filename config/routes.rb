@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     resources :events, except: [:new, :edit]
+    resources :places, except: [:new, :show]
+    resources :customers, only: [:edit, :show, :update]
   end
 end
