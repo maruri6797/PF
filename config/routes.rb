@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :managers, only: [:index, :create, :destroy]
+    resources :customers, only: [:index, :show]
   end
 
   devise_for :customers, controllers: {

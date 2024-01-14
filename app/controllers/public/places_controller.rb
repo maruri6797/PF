@@ -7,6 +7,9 @@ class Public::PlacesController < ApplicationController
   end
 
   def create
+    place = Place.new(place_params)
+    place.save
+    redirect_to places_path
   end
 
   def edit
@@ -14,9 +17,15 @@ class Public::PlacesController < ApplicationController
   end
 
   def update
+    place = Place.find(params[:id])
+    place.update(place_params)
+    redirect_to places_path
   end
 
   def destroy
+    place = Place.find(params[:id])
+    place.destroy
+    redirect_to request.referer
   end
 
   private

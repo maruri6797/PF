@@ -1,12 +1,23 @@
 .container
   .row
     .col-lg-10.col-md-8
-      %h3 Sign up
+      %h3 Client sign up
       = form_with(model: @customer, url: customer_registration_path) do |f|
         = render "public/shared/error_messages", resource: resource
         .form-group
+          = f.label :company
+          = f.text_field :company
+        .form-group
+          = f.label :first_name
+          = f.text_field :first_name
+          = f.label :last_name
+          = f.text_field :last_name
+        .form-group
           = f.label :email
           = f.email_field :email, autofocus: true, autocomplete: "email"
+        .form-group
+          = f.label :phone
+          = f.telephone_field :phone
         .form-group
           = f.label :password
           - if @minimum_password_length

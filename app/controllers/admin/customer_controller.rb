@@ -2,6 +2,11 @@ class Admin::CustomerController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @customers = Customer.all
+    admin = current_admin
+    @customers = admin.customers
+  end
+  
+  def show
+    @customer = Customer.find(params[:id])
   end
 end

@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-10.col-md-8
-      %h3 Log in
+      %h3 Client log in
       = form_with(model: @customer, url: customer_session_path) do |f|
         .form-group
           = f.label :email

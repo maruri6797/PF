@@ -8,10 +8,20 @@
         %ul.navbar-nav.ml-auto
         - if customer_signed_in?
           %li.nav-item
-            = link_to 
-        - elsif admin_signed}_in?
+
+        - elsif admin_signed_in?
           %li.nav-item
-            
+
         - else
           %li.nav-item
-          
+            %p Client is here
+          %li.nav-item
+            = link_to "Sign up", new_customer_registration_path
+          %li.nav-item
+            = link_to "Log in", new_customer_session_path
+          %li.nav-item
+            %p Clean Company is here
+          %li.nav-item
+            = link_to "Sign up", new_admin_registration_path
+          %li.nav-item
+            = link_to "Log in", new_admin_session_path
