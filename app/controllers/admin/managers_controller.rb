@@ -2,7 +2,8 @@ class Admin::ManagersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @managers = Manager.all
+    admin = current_admin
+    @managers = admin.managers
     @manager = Manager.new
   end
 

@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-lg-10.col-md-8
+      %h3 Information Edit
+      = form_with(model: @admin, url: admin_admin_path, method: :patch) do |f|
+        .form-group
+          = f.label :company
+          = f.text_field :company
+        .form-group
+          = f.label :name
+          = f.text_field :name
+        .form-group
+          = f.label :phone
+          = f.telephone_field :phone
+        .actions
+          = f.submit "Update", class: 'btn btn-success'

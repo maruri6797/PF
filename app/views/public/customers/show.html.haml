@@ -2,6 +2,7 @@
   .row
     .col-lg-10.col-md-8
       %h3 Information
+      = link_to "Edit", edit_customer_path(@customer), class: 'btn btn-primary'
       %p Company
       = @customer.company
       %p Manager

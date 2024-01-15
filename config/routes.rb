@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :managers, only: [:index, :create, :destroy]
     resources :customers, only: [:index, :show]
+    resources :admins, only: [:show, :edit]
   end
 
   devise_for :customers, controllers: {
