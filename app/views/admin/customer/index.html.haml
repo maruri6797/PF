@@ -5,4 +5,4 @@
       - @customers.each do |customer|
         = customer.company
         = link_to "Schedule", admin_customer_path(customer)
-        
+        = customer.phone

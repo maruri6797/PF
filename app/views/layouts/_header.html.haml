@@ -2,41 +2,41 @@
   .shadow-sm
     %nav.navbar.navbar-expand-lg.navbar-light
       .container
-        = link_to "CleaningSchedule", root_path, class: 'text-decoration-none'
-        %button.navbar-toggler(data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation")
+        = link_to "CleaningSchedule", root_path, class: 'navbar-brand text-decoration-none'
+        %button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
           %span.navbar-toggler-icon
-        .collapse.navbar-collapse#navbarNavDropdown
-          .navbar-nav.ml-auto
+        #navbarNav.collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
           - if customer_signed_in?
-            .nav-item
-              = link_to "Events", events_path
-            .nav-item
-              = link_to "Place", places_path
-            .nav-item
-              = link_to "Mypage", customer_path(current_customer)
-            .nav-item
-              = link_to "Log out", destroy_customer_session_path, method: :delete
+            %li.nav-item
+              = link_to "Events", events_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Place", places_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Mypage", customer_path(current_customer), class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Log out", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark'
           - elsif admin_signed_in?
-            .nav-item
-              = link_to "Home", admin_root_path
-            .nav-item
-              = link_to "Customer", admin_customers_path
-            .nav-item
-              = link_to "Mypage", admin_admin_path(current_admin)
-            .nav-item
-              = link_to "Manager", admin_managers_path
-            .nav-item
-              = link_to "Log out", destroy_admin_session_path, method: :delete
+            %li.nav-item
+              = link_to "Home", admin_root_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Customer", admin_customers_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Mypage", admin_admin_path(current_admin), class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Manager", admin_managers_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Log out", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark'
           - else
-            .nav-item
+            %li.nav-item
               %p Client is here
-            .nav-item
-              = link_to "Sign up", new_customer_registration_path
-            .nav-item
-              = link_to "Log in", new_customer_session_path
-            .nav-item
+            %li.nav-item
+              = link_to "Sign up", new_customer_registration_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Log in", new_customer_session_path, class: 'nav-link text-dark'
+            %li.nav-item
               %p Clean Company is here
-            .nav-item
-              = link_to "Sign up", new_admin_registration_path
-            .nav-item
-              = link_to "Log in", new_admin_session_path
+            %li.nav-item
+              = link_to "Sign up", new_admin_registration_path, class: 'nav-link text-dark'
+            %li.nav-item
+              = link_to "Log in", new_admin_session_path, class: 'nav-link text-dark'

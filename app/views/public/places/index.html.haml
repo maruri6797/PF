@@ -10,11 +10,13 @@
           = f.label :address
           = f.text_field :address
         .form-group
+          = f.label :price
+          = f.text_field :price
+        .form-group
           = f.label :remarks
           = f.text_field :remarks
         .actions
-          = f.submit "Add", class: 'text-success'
-      - if @places.present?
+          = f.submit "Add", class: 'btn btn-success'
         %table.table
           %thead
             %tr
@@ -22,6 +24,7 @@
               %th
               %th place
               %th address
+              %th price
               %th remarks
           %tbody
           - @places.each do |place|
@@ -30,4 +33,5 @@
               %td= link_to "", place_path(place), method: :delete, class: 'fa-solid fa-trash'
               %td= place.name
               %td= place.address
+              %td= place.price
               %td= place.remarks

@@ -2,7 +2,8 @@ class Public::PlacesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @places = Place.all
+    customer = current_customer
+    @places = customer.places
     @place = Place.new
   end
 

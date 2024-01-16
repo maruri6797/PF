@@ -7,6 +7,8 @@ class Admin::CustomerController < ApplicationController
   end
   
   def show
-    @customer = Customer.find(params[:id])
+    customer = Customer.find(params[:id])
+    @events = customer.events
+    @places = customer.places
   end
 end

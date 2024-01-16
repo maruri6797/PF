@@ -2,4 +2,14 @@
   .row
     .col-lg-10.col-md-8
       %h3 Schedule
-      
+      = month_calendar(events: @events) do |date, events|
+        = date
+        - events.each do |event|
+          = event.place.name
+          - if event.note.present?
+            = event.note
+      %h3 Places
+      - @places.each do |place|
+        = place.name
+        = place.address
+        = place.remarks
