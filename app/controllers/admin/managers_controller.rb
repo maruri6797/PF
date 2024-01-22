@@ -8,13 +8,21 @@ class Admin::ManagersController < ApplicationController
   end
 
   def create
-    manager = Manager.new(manager_params)
-    manager.save
+    @manager = Manager.new(manager_params)
+    admin = current_admin
+    @managers = admin.managers
+    if @manager.save
+      redirect_to admin_managers_path
+    else
+      flash.now[:alert] = "Sorry, we failed"
+      render :index
+    end
   end
 
   def destroy
     manager.find(params: id)
     manager.destroy
+    redirect_to request.referer
   end
 
   private

@@ -4,6 +4,38 @@
       %h3 Schedule
       = month_calendar(events: @events) do |date, events|
         = date
-        = render 'public/events/new', event: @event
+        %button.btn.btn-primary.button.expansion(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
+          %i.fa-solid.fa-plus
         - events.each do |event|
           = link_to event.place.name, event_path(event)
+
+.modal.fade#exampleModal(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        %h5.modal-title#exampleModal New Event
+        %button.close(type="button" data-bs-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+      = form_with(model: @event, url: events_path) do |f|
+        .modal-body
+          .form-group
+            = f.label :place
+            = f.collection_radio_buttons(:place_ids, current_customer.places, :id, :name) do |b|
+              = b.radio_button + b.label
+          .form-group
+            = f.datetime_select :start_time
+          .form-group
+            = f.label :is_correspondence, "Correspondence"
+            = f.radio_button :is_correspondence, false
+            = f.label :is_correspondence_false, "absence"
+            = f.radio_button :is_correspondence, true
+            = f.label :is_correspondence_true, "presence"
+          .form-group
+            = f.label :note
+            = f.text_field :note
+          .form-group
+            = f.hidden_field :status
+            = f.hidden_field :trash
+        .modal-footer
+          %button.btn.btn-secondary(type="button" data-bs-dismiss="modal") close
+          = f.submit "Add", class: 'btn btn-success'

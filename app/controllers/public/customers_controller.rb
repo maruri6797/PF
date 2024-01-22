@@ -10,6 +10,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+    if @customer.update(customer_params)
+      redirect_to customer_path(customer)
+    else
+      flash.now[:alert] = "Sorry, we failed"
+      render :edit
+    end
   end
 
   private

@@ -17,21 +17,22 @@
           = f.text_field :remarks
         .actions
           = f.submit "Add", class: 'btn btn-success'
-        %table.table
-          %thead
-            %tr
-              %th
-              %th
-              %th place
-              %th address
-              %th price
-              %th remarks
-          %tbody
-          - @places.each do |place|
-            %tr
-              %td= link_to "", edit_place_path(place), class: 'fa-solid fa-pen-to-square'
-              %td= link_to "", place_path(place), method: :delete, class: 'fa-solid fa-trash'
-              %td= place.name
-              %td= place.address
-              %td= place.price
-              %td= place.remarks
+
+      %table.table
+        %thead
+          %tr
+            %th
+            %th
+            %th place
+            %th address
+            %th price
+            %th remarks
+        %tbody
+        - @places.each do |place|
+          %tr
+            %td= link_to "", edit_place_path(place), class: 'fa-solid fa-pen-to-square'
+            %td= link_to "", place_path(place), method: :delete, class: 'fa-solid fa-trash'
+            %td= place.name
+            %td= place.address
+            %td= place.price
+            %td= place.remarks

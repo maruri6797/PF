@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin, controllers: {
     registrations: "admin/registrations",
     sessions: 'admin/sessions',
@@ -9,7 +10,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :managers, only: [:index, :create, :destroy]
     resources :customers, only: [:index, :show]
-    resources :admins, only: [:show, :edit]
+    resources :admins, only: [:show, :edit, :update]
+    resources :events, only: [:index]
   end
 
   devise_for :customers, controllers: {
