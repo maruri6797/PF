@@ -9,6 +9,7 @@ class Admin::ManagersController < ApplicationController
 
   def create
     @manager = Manager.new(manager_params)
+    @manager.admin_id = current_admin.id
     admin = current_admin
     @managers = admin.managers
     if @manager.save

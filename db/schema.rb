@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 2024_01_11_070820) do
     t.string "last_name", null: false
     t.string "company", null: false
     t.integer "phone", null: false
+    t.integer "admin_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_customers_on_admin_id"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -65,9 +67,11 @@ ActiveRecord::Schema.define(version: 2024_01_11_070820) do
   end
 
   create_table "managers", force: :cascade do |t|
+    t.integer "admin_id", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_managers_on_admin_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -103,9 +107,11 @@ ActiveRecord::Schema.define(version: 2024_01_11_070820) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "customers", "admins"
   add_foreign_key "event_places", "events"
   add_foreign_key "event_places", "places"
   add_foreign_key "events", "customers"
+  add_foreign_key "managers", "admins"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "places", "customers"

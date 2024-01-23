@@ -10,6 +10,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :last_name, null: false
       t.string :company, null: false
       t.integer :phone, null: false
+      t.references :admin, null: false, foreign_key: true
 
       ## Recoverable
       t.string   :reset_password_token

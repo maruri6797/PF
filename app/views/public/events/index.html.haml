@@ -7,7 +7,7 @@
         %button.btn.btn-primary.button.expansion(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
           %i.fa-solid.fa-plus
         - events.each do |event|
-          = link_to event.place.name, event_path(event)
+          = link_to event.place.name, event_path(date)
 
 .modal.fade#exampleModal(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
   .modal-dialog(role="document")
